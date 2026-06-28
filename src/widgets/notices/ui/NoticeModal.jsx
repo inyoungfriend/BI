@@ -1,4 +1,5 @@
 import React from "react";
+import CloseIconButton from "../../../shared/ui/atoms/CloseIconButton";
 
 function NoticeModal({ notices, onClose }) {
   return (
@@ -18,9 +19,11 @@ function NoticeModal({ notices, onClose }) {
       >
         <div className="notice-modal-header">
           <h3>Notices & Announcements</h3>
-          <button type="button" className="notice-close-button" onClick={onClose}>
-            Close
-          </button>
+          <CloseIconButton
+            className="notice-close-button"
+            onClick={onClose}
+            ariaLabel="Close notices modal"
+          />
         </div>
         <ul className="notice-list">
           {notices.map((item) => (

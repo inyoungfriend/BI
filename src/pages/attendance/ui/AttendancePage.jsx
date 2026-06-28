@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { attendanceHistory } from "../../../shared/config/mockData";
 
 const WEEKDAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -19,8 +18,7 @@ const MONTH_COMPLETION_OVERRIDES = {
   },
 };
 
-const getMonthStart = (sourceDate) =>
-  new Date(sourceDate.getFullYear(), sourceDate.getMonth(), 1);
+const getMonthStart = (sourceDate) => new Date(sourceDate.getFullYear(), sourceDate.getMonth(), 1);
 
 const shiftMonth = (sourceDate, offset) =>
   new Date(sourceDate.getFullYear(), sourceDate.getMonth() + offset, 1);
@@ -39,9 +37,7 @@ const getMonthKey = (targetDate) =>
   `${targetDate.getFullYear()}-${String(targetDate.getMonth() + 1).padStart(2, "0")}`;
 
 const getDateKey = (targetDate) =>
-  `${targetDate.getFullYear()}-${String(targetDate.getMonth() + 1).padStart(2, "0")}-${String(
-    targetDate.getDate()
-  ).padStart(2, "0")}`;
+  `${targetDate.getFullYear()}-${String(targetDate.getMonth() + 1).padStart(2, "0")}-${String(targetDate.getDate()).padStart(2, "0")}`;
 
 const getSydneyTodayKey = () => {
   const parts = new Intl.DateTimeFormat("en-AU", {
@@ -110,7 +106,11 @@ const buildMonthCompletionMap = (monthDate, targetPercent, monthOverrides = {}) 
   );
 
   if (currentCompleted < targetCompleted) {
-    for (let index = 0; index < completions.length && currentCompleted < targetCompleted; index += 1) {
+    for (
+      let index = 0;
+      index < completions.length && currentCompleted < targetCompleted;
+      index += 1
+    ) {
       if (lockedIndices.has(index)) {
         continue;
       }
@@ -123,7 +123,11 @@ const buildMonthCompletionMap = (monthDate, targetPercent, monthOverrides = {}) 
       }
     }
   } else if (currentCompleted > targetCompleted) {
-    for (let index = 0; index < completions.length && currentCompleted > targetCompleted; index += 1) {
+    for (
+      let index = 0;
+      index < completions.length && currentCompleted > targetCompleted;
+      index += 1
+    ) {
       if (lockedIndices.has(index)) {
         continue;
       }
@@ -159,7 +163,7 @@ const buildCalendarCells = (monthDate, monthCompletions, todayKey) => {
     const isCurrentMonth = dayOffset >= 0 && dayOffset < daysInMonth;
     const dateKey = getDateKey(cellDate);
     const isFuture = isCurrentMonth && dateKey > todayKey;
-    const completedClasses = isCurrentMonth ? monthCompletions[dateKey] ?? null : null;
+    const completedClasses = isCurrentMonth ? (monthCompletions[dateKey] ?? null) : null;
 
     cells.push({
       key: dateKey,
@@ -267,17 +271,19 @@ function AttendancePage() {
                 cell.isFuture
                   ? " is-future"
                   : cell.completedClasses === 3
-                  ? " is-complete"
-                  : cell.completedClasses === 0
-                    ? " is-missed"
-                  : cell.completedClasses === 2
-                    ? " is-partial"
-                    : ""
+                    ? " is-complete"
+                    : cell.completedClasses === 0
+                      ? " is-missed"
+                      : cell.completedClasses === 2
+                        ? " is-partial"
+                        : ""
               }`}
             >
               <span className="calendar-day-number">{cell.dayNumber}</span>
               {cell.isCurrentMonth && cell.isFuture && (
-                <span className="calendar-day-progress is-future">Upcoming</span>
+                <span className="calendar-day-progress is-future" title="Upcoming">
+                  UP
+                </span>
               )}
               {cell.isCurrentMonth && !cell.isFuture && cell.completedClasses !== null && (
                 <span className="calendar-day-progress">{`${cell.completedClasses}/${DAILY_CLASS_COUNT}`}</span>
@@ -289,15 +295,15 @@ function AttendancePage() {
         <div className="attendance-calendar-legend" aria-label="Attendance status legend">
           <span>
             <i className="calendar-status-chip is-complete" />
-            3/3 Completed
+            Completed
           </span>
           <span>
             <i className="calendar-status-chip is-partial" />
-            2/3 Completed
+            Partially Completed
           </span>
           <span>
             <i className="calendar-status-chip is-missed" />
-            0/3 Missed
+            Missed
           </span>
           <span>
             <i className="calendar-status-chip is-future" />

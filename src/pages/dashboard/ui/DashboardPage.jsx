@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ATTENDANCE_STORAGE_KEY, attendanceHistory, classes, createInitialAttendanceState, createInitialExpandedIntents, notices, todayVocabulary } from "../../../shared/config/mockData";
+import {
+  ATTENDANCE_STORAGE_KEY,
+  attendanceHistory,
+  classes,
+  createInitialAttendanceState,
+  createInitialExpandedIntents,
+  notices,
+  todayVocabulary,
+} from "../../../shared/config/mockData";
 import ClassesPanel from "../../../widgets/classes/ui/ClassesPanel";
 import NoticeModal from "../../../widgets/notices/ui/NoticeModal";
 import NoticePreview from "../../../widgets/notices/ui/NoticePreview";
@@ -241,11 +249,7 @@ function DashboardPage() {
       {isNoticeOpen && <NoticeModal notices={notices} onClose={() => setIsNoticeOpen(false)} />}
 
       {isToastMounted && (
-        <ToastMessage
-          message={toastMessage}
-          isActive={isToastActive}
-          onClose={handleToastClose}
-        />
+        <ToastMessage message={toastMessage} isActive={isToastActive} onClose={handleToastClose} />
       )}
     </>
   );

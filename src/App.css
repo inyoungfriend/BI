@@ -54,6 +54,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  text-decoration: none;
 }
 
 .brand-logo {
@@ -115,15 +116,27 @@ body {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   border-radius: 0.45rem;
-  padding: 0.35rem 0.55rem;
-  font-size: 1.1rem;
-  line-height: 1;
-  width: fit-content;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
 .hamburger-toggle:hover {
   background: rgba(255, 255, 255, 0.18);
+}
+
+.hamburger-icon {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .mobile-nav-overlay {
@@ -156,23 +169,6 @@ body {
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--navy);
-}
-
-.mobile-nav-close {
-  border: 1px solid var(--border-soft);
-  background: #ffffff;
-  color: var(--navy);
-  border-radius: 0.45rem;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.mobile-nav-close:hover {
-  border-color: var(--navy);
-  background: #f8fafc;
 }
 
 .mobile-nav-menu {
@@ -533,8 +529,19 @@ body {
 }
 
 .calendar-day-progress.is-future {
+  right: 0.28rem;
+  bottom: 0.2rem;
+  left: auto;
+  min-width: 1.2rem;
+  padding: 0.05rem 0.2rem;
+  border-radius: 999px;
+  background: #eef2f8;
+  border: 1px solid #d8e0ee;
   font-weight: 600;
   color: #8b97ad;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.05;
 }
 
 .attendance-calendar-legend {
@@ -935,14 +942,28 @@ body {
   background: #ffffff;
   color: var(--navy);
   border-radius: 0.45rem;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.86rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
   cursor: pointer;
 }
 
 .notice-close-button:hover {
   border-color: var(--navy);
   background: #f8fafc;
+}
+
+.close-icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .attendance-value {
@@ -1067,7 +1088,6 @@ body {
 .vocab-word-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 0.5rem;
 }
 
@@ -1152,11 +1172,13 @@ body {
   border: 0;
   background: transparent;
   color: #ffffff;
-  font-size: 1rem;
-  line-height: 1;
-  padding: 0.1rem 0.2rem;
+  padding: 0.1rem;
   cursor: pointer;
   opacity: 0.85;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: grid;
+  place-items: center;
 }
 
 .toast-close-button:hover {
@@ -1199,7 +1221,7 @@ body {
   }
 
   .hamburger-toggle {
-    display: inline-grid;
+    display: inline-flex;
   }
 
   .mobile-nav-overlay {
@@ -1313,6 +1335,12 @@ body {
 
   .calendar-day-progress {
     font-size: 0.64rem;
+  }
+
+  .calendar-day-progress.is-future {
+    min-width: 1.05rem;
+    font-size: 0.54rem;
+    padding: 0.04rem 0.16rem;
   }
 
   .attendance-calendar-legend span {

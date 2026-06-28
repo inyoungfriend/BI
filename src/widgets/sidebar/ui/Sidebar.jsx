@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import CloseIconButton from "../../../shared/ui/atoms/CloseIconButton";
 
 function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,13 +22,13 @@ function Sidebar() {
   return (
     <aside className="sidebar" aria-label="Main Navigation">
       <div className="sidebar-header">
-        <div className="brand">
+        <NavLink to="/" className="brand" aria-label="Go to dashboard" end>
           <img
             src="/images/boston-institute-logo.avif"
             alt="Boston Institute"
             className="brand-logo"
           />
-        </div>
+        </NavLink>
 
         <button
           type="button"
@@ -36,7 +37,11 @@ function Sidebar() {
           aria-expanded={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
-          ☰
+          <svg className="hamburger-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3 4h10" />
+            <path d="M3 8h10" />
+            <path d="M3 12h10" />
+          </svg>
         </button>
       </div>
 
@@ -49,10 +54,17 @@ function Sidebar() {
       </header>
 
       <nav className="nav-menu">
-        <NavLink to="/" className={({ isActive }) => (isActive ? "nav-item is-active" : "nav-item")} end>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "nav-item is-active" : "nav-item")}
+          end
+        >
           Dashboard
         </NavLink>
-        <NavLink to="/attendance" className={({ isActive }) => (isActive ? "nav-item is-active" : "nav-item")}>
+        <NavLink
+          to="/attendance"
+          className={({ isActive }) => (isActive ? "nav-item is-active" : "nav-item")}
+        >
           Attendance
         </NavLink>
       </nav>
@@ -69,20 +81,28 @@ function Sidebar() {
           <div className="mobile-nav-sheet">
             <div className="mobile-nav-sheet-header">
               <p className="mobile-nav-title">Menu</p>
-              <button
-                type="button"
-                className="mobile-nav-close"
+              <CloseIconButton
+                className="notice-close-button"
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close navigation menu"
-              >
-                ×
-              </button>
+                ariaLabel="Close navigation menu"
+              />
             </div>
             <nav className="mobile-nav-menu">
-              <NavLink to="/" className={({ isActive }) => (isActive ? "mobile-nav-item is-active" : "mobile-nav-item")} end>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "mobile-nav-item is-active" : "mobile-nav-item"
+                }
+                end
+              >
                 Dashboard
               </NavLink>
-              <NavLink to="/attendance" className={({ isActive }) => (isActive ? "mobile-nav-item is-active" : "mobile-nav-item")}>
+              <NavLink
+                to="/attendance"
+                className={({ isActive }) =>
+                  isActive ? "mobile-nav-item is-active" : "mobile-nav-item"
+                }
+              >
                 Attendance
               </NavLink>
             </nav>
