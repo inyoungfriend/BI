@@ -102,4 +102,4 @@ This project uses `react-router-dom` with browser history.
 
 ## Deployment URL
 
-- Live URL: _Not deployed yet_
+- Live URL: bostoninstitute.vercel.app
